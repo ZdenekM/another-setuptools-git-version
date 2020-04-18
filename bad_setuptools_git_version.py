@@ -79,6 +79,7 @@ def validate_version_config(dist, _, config):
 # explicitly define the outward facing API of this module
 __all__ = [
     get_tag.__name__,
+    get_count_commit.__name__,
     get_version.__name__,
     validate_version_config.__name__,
 ]
