@@ -1,4 +1,4 @@
-# better-setuptools-git-version
+# bad-setuptools-git-version
 
 [![PackageVersion][pypi-version]][pypi-home]
 [![PythonVersion][python-version]][python-home]
@@ -27,7 +27,7 @@ Instead of hard-coding the package version in ``setup.py`` like:
 ```python
 setup(
     name='foobar',
-    version='1.0',
+    version='1.0.0',
     ...
 )
 ```

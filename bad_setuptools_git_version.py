@@ -21,11 +21,11 @@ def _get_command_output(command):
 
 def get_tag():
     """Return the last tag for the git repository reachable from HEAD."""
-    return _get_command_output(['git', 'describe', 'HEAD', '--abbrev=0', '--tags'])
+    return _get_command_output('git describe HEAD --abbrev=0 --tags')
 
 
 def get_count_commit():
-    return _get_command_output(['git', 'rev-list', 'HEAD', '--count'])
+    return _get_command_output('git rev-list HEAD --count')
 
 
 def get_version(template="{tag}.{cc}", starting_version="0.1.0"):
