@@ -4,7 +4,7 @@ import collections
 
 def _get_command_output(command):
     try:
-        output = subprocess.check_output(command, shell=True)
+        output = subprocess.check_output(command, shell=False)
     except subprocess.CalledProcessError as e:
         output = e.output
 
