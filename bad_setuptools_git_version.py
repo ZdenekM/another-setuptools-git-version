@@ -13,36 +13,22 @@ def _get_command_output(command):
     except subprocess.CalledProcessError as e:
         output = e.output
 
-    return output.strip()
+    if isinstance(output, bytes):
+        output = output.decode("utf-8")
+
+    return output.rstrip('\r\n')
 
 
 def get_tag():
     """Return the last tag for the git repository reachable from HEAD."""
-    # another possible option is: 'git tag --merged | sort -V | tail -n1'
-    return _get_command_output("git tag --sort=version:refname --merged | tail -n1")
+    return _get_command_output(['git', 'describe', 'HEAD', '--abbrev=0', '--tags'])
 
 
-def get_tag_commit_sha(tag):
-    """Return the commit that the tag is pointing to."""
-    return _get_command_output("git rev-list -n 1 {tag}".format(tag=tag))
+def get_count_commit():
+    return _get_command_output(['git', 'rev-list', 'HEAD', '--count'])
 
 
-def is_dirty():
-    """Return True or False depending on whether the working tree is dirty (considers untracked files as well)"""
-    return len(_get_command_output("git status -s")) != 0
-
-
-def is_head_at_tag(tag):
-    """Return True or False depending on whether the given tag is pointing to HEAD"""
-    return get_head_sha() == get_tag_commit_sha(tag)
-
-
-def get_head_sha():
-    """Return the sha key of HEAD."""
-    return _get_command_output('git rev-parse HEAD')
-
-
-def get_version(template="{tag}.dev{sha}", starting_version="0.1.0"):
+def get_version(template="{tag}.{cc}", starting_version="0.1.0"):
     """
     Return the full git version using the given template. If there are no annotated tags, the version specified by
     starting_version will be used. If HEAD is at the tag, the version will be the tag itself. If there are commits ahead
@@ -63,17 +49,11 @@ def get_version(template="{tag}.dev{sha}", starting_version="0.1.0"):
     """
 
     tag = get_tag()
+    cc = get_count_commit()
     if len(tag) == 0:
         version = starting_version
-    elif is_head_at_tag(tag):
-        version = tag
     else:
-        sha = get_head_sha()[:8]
-        version = template.format(tag=tag, sha=sha)
-
-    if is_dirty():
-        separator = '.' if ('+' in version) else '+'
-        version = "{version}{separator}dirty".format(version=version, separator=separator)
+        version = template.format(tag=tag, cc=cc)
 
     return version
 
@@ -89,7 +69,7 @@ def validate_version_config(dist, _, config):
         starting_version = config["starting_version"]
 
     if "version_format" not in config:
-        template = "{tag}.dev{sha}"
+        template = "{tag}.{cc}"
     else:
         template = config["version_format"]
 
@@ -99,10 +79,6 @@ def validate_version_config(dist, _, config):
 # explicitly define the outward facing API of this module
 __all__ = [
     get_tag.__name__,
-    get_tag_commit_sha.__name__,
-    is_dirty.__name__,
-    is_head_at_tag.__name__,
-    get_head_sha.__name__,
     get_version.__name__,
     validate_version_config.__name__,
 ]
