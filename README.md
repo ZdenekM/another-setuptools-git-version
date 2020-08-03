@@ -1,4 +1,4 @@
-# bad-setuptools-git-version
+# another-setuptools-git-version
 
 [![PackageVersion][pypi-version]][pypi-home]
 [![PythonVersion][python-version]][python-home]
