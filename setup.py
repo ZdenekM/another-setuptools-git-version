@@ -9,12 +9,12 @@ def README():
 
 
 setup(
-    name='bad-setuptools-git-version',
-    url='https://github.com/st7105/bad-setuptools-git-version',
-    author='st7105',
-    author_email='st7105@gmail.com',
+    name='another-setuptools-git-version',
+    url='https://github.com/zdenekm/another-setuptools-git-version',
+    author='zdenekm',
+    author_email='zdenek.materna@gmail.com',
     description='Automatically set package version using git tags.',
-    version="1.0.11",
+    version="0.1.1",
     long_description=README(),
     long_description_content_type='text/markdown',
     keywords='setuptools git version-control',
@@ -27,16 +27,16 @@ setup(
         'Programming Language :: Python :: 3',
         'Development Status :: 5 - Production/Stable',
     ],
-    py_modules=['bad_setuptools_git_version'],
+    py_modules=['another_setuptools_git_version'],
     install_requires=[
         'setuptools >= 8.0',
     ],
     entry_points={
         'distutils.setup_keywords': [
-            'version_config = bad_setuptools_git_version:validate_version_config'
+            'version_config = another_setuptools_git_version:validate_version_config'
         ],
         'console_scripts': [
-            'bad-setuptools-git-version = bad_setuptools_git_version:get_version'
+            'another-setuptools-git-version = another_setuptools_git_version:get_version'
         ]
     }
 )
