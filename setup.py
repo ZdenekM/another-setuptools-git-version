@@ -14,7 +14,7 @@ setup(
     author='zdenekm',
     author_email='zdenek.materna@gmail.com',
     description='Automatically set package version using git tags.',
-    version="0.1.1",
+    version="0.1.2",
     long_description=README(),
     long_description_content_type='text/markdown',
     keywords='setuptools git version-control',
