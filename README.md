@@ -41,7 +41,7 @@ setup(
         "version_format": "{tag}.{cc}",
         "starting_version": "0.1.0"
     },
-    setup_requires=['bad-setuptools-git-version'],
+    setup_requires=['another-setuptools-git-version'],
     ...
 )
 ```
