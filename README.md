@@ -6,12 +6,12 @@
 [![Format][pypi-format]][pypi-home]
 [![License][pypi-license]](LICENSE)
 
-[pypi-version]: https://badge.fury.io/py/bad-setuptools-git-version.svg
-[pypi-license]: https://img.shields.io/pypi/l/bad-setuptools-git-version.svg
-[pypi-status]: https://img.shields.io/pypi/status/bad-setuptools-git-version.svg
-[pypi-format]: https://img.shields.io/pypi/format/bad-setuptools-git-version.svg
-[pypi-home]: https://badge.fury.io/py/bad-setuptools-git-version
-[python-version]: https://img.shields.io/pypi/pyversions/bad-setuptools-git-version.svg
+[pypi-version]: https://badge.fury.io/py/another-setuptools-git-version.svg
+[pypi-license]: https://img.shields.io/pypi/l/another-setuptools-git-version.svg
+[pypi-status]: https://img.shields.io/pypi/status/another-setuptools-git-version.svg
+[pypi-format]: https://img.shields.io/pypi/format/another-setuptools-git-version.svg
+[pypi-home]: https://badge.fury.io/py/another-setuptools-git-version
+[python-version]: https://img.shields.io/pypi/pyversions/another-setuptools-git-version.svg
 [python-home]: https://python.org
 
 Automatically set package version from Git. This is a re-release of
@@ -46,4 +46,4 @@ setup(
 )
 ```
 
-The tool uses the semantically-latest tag as the base version. If there are no annotated tags, the version specified by `starting_version` will be used. If `HEAD` is at the tag, the version will be the tag itself. If there are commits ahead of the tag, the first 8 characters of the sha of the `HEAD` commit will be included.
+The tool uses the semantically-latest tag as the base version. If there are no annotated tags, the version specified by `starting_version` will be used. If `HEAD` is at the tag, the version will be the tag itself. If there are commits ahead of the tag, the commit count will be included.
